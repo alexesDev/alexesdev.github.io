@@ -17,6 +17,9 @@
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
     (function (d, w, c) {
+        if(location.host === 'localhost:8080')
+          return;
+
         (w[c] = w[c] || []).push(function() {
             try {
                 w.yaCounter32500780 = new Ya.Metrika({
