@@ -18,7 +18,29 @@
   })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-97308622-1', 'auto');
-  ga('send', 'pageview');
+
+  try {
+    function getClearHash() {
+      return window.location.hash.replace(/\?_k.*/, '').substr(1) || '/';
+    }
+
+    var prevHash = getClearHash();
+
+    ga('set', 'page', prevHash);
+    ga('send', 'pageview');
+
+    setInterval(function() {
+      var hash = getClearHash();
+
+      if (hash !== prevHash) {
+        ga('set', 'page', hash);
+        ga('send', 'pageview');
+        prevHash = hash;
+      }
+    }, 500);
+  } catch(e) {
+    console.error(e);
+  }
 </script>
 
 <script src="vendor.js"></script>
